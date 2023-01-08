@@ -1,0 +1,52 @@
+$themes: (
+  light: (
+    colorTaskText: #494c6b,
+    colorCompletedText: #d1d2da,
+    colorCreateText: #393a4b,
+    colorCreatePlaceholderText: #9495a5,
+    colorBackground: #e3e4f1,
+    colorBoxBackground: #fff,
+    colorIcon: #e3e4f1,
+    colorFilters: #9495a5,
+    colorFiltersHover: #494c6b,
+    backgroundImageMobile: url(../images/bg-mobile-light.jpg),
+    backgroundImageDesktop: url(../images/bg-desktop-light.jpg),
+    themeIcon: url(../images/icon-moon.svg),
+  ),
+  dark: (
+    colorTaskText: #494c6b,
+    colorCompletedText: #4d5067,
+    colorCreateText: #c8cbe7,
+    colorCreatePlaceholderText: #767992,
+    colorBackground: #171823,
+    colorBoxBackground: #393a4b,
+    colorIcon: #393a4b,
+    colorFilters: #5b5e7e,
+    colorFiltersHover: #e3e4f1,
+    backgroundImageMobile: url(../images/bg-mobile-dark.jpg),
+    backgroundImageDesktop: url(../images/bg-desktop-dark.jpg),
+    themeIcon: url(../images/icon-sun.svg),
+  ),
+);
+
+@mixin themify($themes) {
+  @each $theme, $map in $themes {
+    .theme-#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), "#{$key}");
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}

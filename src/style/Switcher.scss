@@ -1,0 +1,11 @@
+@import "./theme-variables.scss";
+.switcher {
+  @include themify($themes) {
+    background-image: themed("themeIcon");
+  }
+  height: 20px;
+  width: 20px;
+  background-color: transparent;
+  background-size: cover;
+  border: none;
+}

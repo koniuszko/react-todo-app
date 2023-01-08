@@ -1,0 +1,16 @@
+@import "./theme-variables.scss";
+.header {
+  @include themify($themes) {
+    background-image: themed("backgroundImageMobile");
+  }
+  height: 200px;
+  width: 100%;
+  padding: 48px 24px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.logo {
+  color: #fff;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
