@@ -1,0 +1,38 @@
+@import "./theme-variables.scss";
+.new_task {
+  @include themify($themes) {
+    background-color: themed("colorBoxBackground");
+  }
+  border-radius: 5px;
+  width: 327px;
+  height: 48px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+}
+.checkbox {
+  @include themify($themes) {
+    border: solid 1px themed("colorIcon");
+  }
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+}
+.task_field {
+  @include themify($themes) {
+    color: themed("colorCreateText");
+  }
+  width: 255px;
+  padding-left: 12px;
+  outline: none;
+  border: none;
+}
+.task_field::placeholder {
+  @include themify($themes) {
+    color: themed("colorCreatePlaceholderText");
+  }
+  font-size: 12px;
+  letter-spacing: -0.17px;
+  font-weight: 400;
+  line-height: 20px;
+}
