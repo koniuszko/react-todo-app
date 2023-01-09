@@ -5,6 +5,7 @@ import "../style/App.scss";
 
 import Header from "./Header";
 import NewTask from "./NewTask";
+import TasksList from "./TasksList";
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -14,6 +15,7 @@ function App() {
         <div className="App">
           <Header />
           <NewTask />
+          <TasksList />
         </div>
       </div>
     </ThemeContext.Provider>

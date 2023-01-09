@@ -21,6 +21,7 @@
 .task_field {
   @include themify($themes) {
     color: themed("colorCreateText");
+    background-color: themed("colorBoxBackground");
   }
   width: 255px;
   padding-left: 12px;
