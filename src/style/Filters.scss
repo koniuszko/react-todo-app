@@ -1,0 +1,29 @@
+@import "./theme-variables.scss";
+
+.filters {
+  @include themify($themes) {
+    background-color: themed("colorBoxBackground");
+  }
+  width: 327px;
+  min-height: 48px;
+  padding: 0 20px;
+  margin-top: 16px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.filter_button {
+  @include themify($themes) {
+    color: themed("colorFilters");
+  }
+  background-color: transparent;
+  border: none;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: -0.19px;
+}
+
+.filter_button.active {
+  color: #3a7cfd;
+}

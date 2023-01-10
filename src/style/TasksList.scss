@@ -1,13 +1,20 @@
 @import "./theme-variables.scss";
-.tasks_list {
+
+.list {
   @include themify($themes) {
     background-color: themed("colorBoxBackground");
   }
+  width: 327px;
+  min-height: 52px;
+  padding: 0 20px;
   margin-top: 16px;
   border-radius: 5px;
-  width: 327px;
-  height: 368px;
-  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tasks_list {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,7 +32,6 @@
   @include themify($themes) {
     color: themed("colorCreateText");
     background-color: themed("colorBoxBackground");
-    // border-bottom: solid 1px themed("colorIcon");
   }
   display: block;
   width: 100%;
@@ -34,10 +40,18 @@
   border: none;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.task_container {
+  display: flex;
+  align-items: center;
 }
 
 .task_description {
   padding-left: 12px;
+  font-size: 12px;
+  letter-spacing: -0.17px;
 }
 
 .task_done {
@@ -59,4 +73,26 @@
   content: "";
   height: 1px;
   width: calc(100% + 40px);
+  justify-self: flex-end;
+}
+
+.summary {
+  @include themify($themes) {
+    color: themed("colorFilters");
+  }
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  letter-spacing: -0.17px;
+}
+
+.clear_btn {
+  @include themify($themes) {
+    color: themed("colorFilters");
+  }
+  background-color: transparent;
+  border: none;
+  font-size: 12px;
+  letter-spacing: -0.17px;
 }

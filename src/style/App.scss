@@ -4,8 +4,18 @@
   @include themify($themes) {
     background-color: themed("colorBackground");
   }
+  width: 375px;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+}
+
+.text {
+  @include themify($themes) {
+    color: themed("colorFilters");
+  }
+  font-size: 14px;
+  letter-spacing: -0.19px;
+  margin-top: 40px;
 }
