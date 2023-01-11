@@ -20,61 +20,6 @@
   align-items: center;
   list-style: none;
 }
-.checkbox {
-  @include themify($themes) {
-    border: solid 1px themed("colorIcon");
-  }
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-}
-.task {
-  @include themify($themes) {
-    color: themed("colorCreateText");
-    background-color: themed("colorBoxBackground");
-  }
-  display: block;
-  width: 100%;
-  height: 52px;
-  outline: none;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.task_container {
-  display: flex;
-  align-items: center;
-}
-
-.task_description {
-  padding-left: 12px;
-  font-size: 12px;
-  letter-spacing: -0.17px;
-}
-
-.task_done {
-  @include themify($themes) {
-    color: themed("colorIcon");
-  }
-  background-color: transparent;
-  border: none;
-  outline: none;
-  font-size: 20px;
-  align-self: center;
-}
-
-.underline {
-  @include themify($themes) {
-    background-color: themed("colorIcon");
-  }
-  display: block;
-  content: "";
-  height: 1px;
-  width: calc(100% + 40px);
-  justify-self: flex-end;
-}
 
 .summary {
   @include themify($themes) {

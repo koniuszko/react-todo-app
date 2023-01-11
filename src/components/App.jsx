@@ -10,11 +10,7 @@ import Filters from "./Filters";
 
 function App() {
   const [theme, setTheme] = useState("dark");
-  const toggleTheme = () => {
-    setTheme({
-      theme: theme === "light" ? "dark" : "light",
-    });
-  };
+
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
       <div className={`theme-${theme}`}>
