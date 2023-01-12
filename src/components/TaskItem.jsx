@@ -1,4 +1,3 @@
-import { Close } from "@mui/icons-material";
 import "../style/TaskItem.scss";
 
 function TaskItem({ number, description, removeTask }) {
@@ -10,11 +9,11 @@ function TaskItem({ number, description, removeTask }) {
           <p className="task_description">{description}</p>
         </div>
         <button
-          taskNumber={number}
           onClick={(e) => console.log(e.target)}
+          taskNumber={number}
           className="task_done"
         >
-          <Close />
+          X
         </button>
       </li>
       <span className="underline"></span>
