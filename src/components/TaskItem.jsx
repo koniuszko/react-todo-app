@@ -9,8 +9,8 @@ function TaskItem({ number, description, removeTask }) {
           <p className="task_description">{description}</p>
         </div>
         <button
-          onClick={(e) => console.log(e.target)}
-          taskNumber={number}
+          onClick={(e) => removeTask(e.target.id)}
+          id={number}
           className="task_done"
         >
           X
