@@ -1,12 +1,13 @@
 import { useState } from "react";
 
+import useWindowWidth from "../hooks/useWindowWidth";
+
 import Filters from "./Filters";
 
 import "../style/TasksList.scss";
 import TaskItem from "./TaskItem";
 
 function TasksList() {
-  // const isMobile = true;
   const taskCounter = 5;
   const [tasks, setTasks] = useState([
     { id: "0", description: "Lorem ipsum dolor sit amet" },
@@ -41,7 +42,7 @@ function TasksList() {
       </ul>
       <div className="summary">
         <p className="task_counter">{taskCounter.toString()} items left</p>
-        {/* {isMobile ? null : <Filters />} */}
+        {useWindowWidth() < 376 ? null : <Filters />}
         <button className="clear_btn">Clear Completed</button>
       </div>
     </section>

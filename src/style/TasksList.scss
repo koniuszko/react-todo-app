@@ -41,3 +41,9 @@
   font-size: 12px;
   letter-spacing: -0.17px;
 }
+
+@media (min-width: 376px) {
+  .list {
+    width: 400px;
+  }
+}

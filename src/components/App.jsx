@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import useWindowWidth from "../hooks/useWindowWidth";
 
 import { ThemeContext } from "../contexts/theme-context";
 import "../style/App.scss";
@@ -10,19 +11,6 @@ import Filters from "./Filters";
 
 function App() {
   const [theme, setTheme] = useState("dark");
-  const [width, setWidth] = useState(window.innerWidth);
-  const isMobile = () => (width < 500 ? true : false);
-
-  useEffect(() => {
-    function handleResize() {
-      setWidth({ width: window.innerWidth });
-    }
-
-    window.addEventListener("resize", handleResize);
-    return (_) => {
-      window.removeEventListener("resize", handleResize);
-    };
-  });
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
@@ -31,7 +19,7 @@ function App() {
           <Header />
           <NewTask />
           <TasksList />
-          {isMobile ? <Filters /> : null}
+          {useWindowWidth() < 376 ? <Filters /> : null}
           <p className="text">Drag and drop to reorder list</p>
         </div>
       </div>

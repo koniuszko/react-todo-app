@@ -19,3 +19,9 @@
   letter-spacing: -0.19px;
   margin-top: 40px;
 }
+
+@media (min-width: 376px) {
+  .App {
+    width: 600px;
+  }
+}
