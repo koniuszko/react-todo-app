@@ -12,13 +12,35 @@ import Filters from "./Filters";
 function App() {
   const [theme, setTheme] = useState("dark");
 
+  const [tasks, setTasks] = useState([
+    { id: 0, description: "Lorem ipsum dolor sit amet" },
+    { id: 1, description: "Lorem ipsum dolor sit amet" },
+    { id: 2, description: "Lorem ipsum dolor sit amet" },
+    { id: 3, description: "Lorem ipsum dolor sit amet" },
+    { id: 4, description: "Lorem ipsum dolor sit amet" },
+    { id: 5, description: "Lorem ipsum dolor sit amet" },
+  ]);
+  const taskCounter = tasks.length;
+
+  const addTask = (newTaskItem) => {
+    setTasks([tasks.push(newTaskItem), ...tasks]);
+  };
+
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
       <div className={`theme-${theme}`}>
         <div className="App">
           <Header />
-          <NewTask />
-          <TasksList />
+          <NewTask
+            tasks={tasks}
+            setTasks={setTasks}
+            addTask={addTask}
+          />
+          <TasksList
+            taskCounter={taskCounter}
+            tasks={tasks}
+            setTasks={setTasks}
+          />
           {useWindowWidth() < 376 ? <Filters /> : null}
           <p className="text">Drag and drop to reorder list</p>
         </div>
