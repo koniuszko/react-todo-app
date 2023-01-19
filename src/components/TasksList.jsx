@@ -7,14 +7,7 @@ import TaskItem from "./TaskItem";
 
 import "../style/TasksList.scss";
 
-function TasksList({ taskCounter, tasks, setTasks }) {
-  const removeTask = (id) => {
-    console.log(id);
-    let index = tasks.map((task) => task.id).indexOf(id);
-    setTasks([{ tasks: tasks.splice(index, 1) }]);
-    console.log(tasks);
-  };
-
+function TasksList({ taskCounter, tasks, setTasks, removeTask }) {
   const clickHandler = () => {
     console.log(tasks);
   };

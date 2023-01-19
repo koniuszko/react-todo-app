@@ -17,11 +17,7 @@ function NewTask({ tasks, setTasks, addTask }) {
       };
       console.log(newTaskItem);
       addTask(newTaskItem);
-
-      // console.log(newTask);
-      // setTasks([...tasks, tasks.push(newTask)]);
-      // console.log(`dodano ${taskName}`);
-      // setTaskName("");
+      setTaskName("");
     }
   }
 

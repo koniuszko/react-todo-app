@@ -23,7 +23,14 @@ function App() {
   const taskCounter = tasks.length;
 
   const addTask = (newTaskItem) => {
-    setTasks([tasks.push(newTaskItem), ...tasks]);
+    tasks.unshift(newTaskItem);
+    setTasks([...tasks]);
+  };
+
+  const removeTask = (id) => {
+    let index = tasks.findIndex((task) => task.id == id);
+    tasks.splice(index, 1);
+    setTasks([...tasks]);
   };
 
   return (
@@ -40,6 +47,7 @@ function App() {
             taskCounter={taskCounter}
             tasks={tasks}
             setTasks={setTasks}
+            removeTask={removeTask}
           />
           {useWindowWidth() < 376 ? <Filters /> : null}
           <p className="text">Drag and drop to reorder list</p>
