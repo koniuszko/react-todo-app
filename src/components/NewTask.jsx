@@ -2,28 +2,39 @@ import { useState } from "react";
 
 import "../style/NewTask.scss";
 
-function NewTask({ tasks, setTasks, addTask }) {
+function NewTask({ addTask }) {
   const [taskName, setTaskName] = useState("");
 
   function valueChange(e) {
     setTaskName(e.target.value);
   }
 
-  function newTask(event) {
+  function newTask() {
+    const newTaskItem = {
+      id: (Math.random() * 100000).toFixed() * 1,
+      description: taskName,
+    };
+    addTask(newTaskItem);
+    setTaskName("");
+  }
+
+  function keyDownHandler(event) {
     if (event.key === "Enter") {
-      const newTaskItem = {
-        id: (Math.random() * 100000).toFixed() * 1,
-        description: taskName,
-      };
-      console.log(newTaskItem);
-      addTask(newTaskItem);
-      setTaskName("");
+      newTask();
     }
+  }
+  function clickHandler() {
+    newTask();
   }
 
   return (
     <div className="new_task">
-      <div className="checkbox"></div>
+      <div className="checkbox">
+        <button
+          className="add_item"
+          onClick={clickHandler}
+        ></button>
+      </div>
       <label>
         <input
           className="task_field"
@@ -31,7 +42,7 @@ function NewTask({ tasks, setTasks, addTask }) {
           placeholder="Create a new todo..."
           value={taskName}
           onChange={(e) => valueChange(e)}
-          onKeyDown={newTask}
+          onKeyDown={keyDownHandler}
         />
       </label>
     </div>

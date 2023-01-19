@@ -1,4 +1,5 @@
 import "../style/TaskItem.scss";
+import { UilTimes } from "@iconscout/react-unicons";
 
 function TaskItem({ number, description, removeTask }) {
   return (
@@ -8,12 +9,11 @@ function TaskItem({ number, description, removeTask }) {
           <div className="checkbox"></div>
           <p className="task_description">{description}</p>
         </div>
-        <button
-          onClick={(e) => removeTask(e.target.id)}
-          id={number}
-          className="task_done"
-        >
-          X
+        <button className="task_done">
+          <UilTimes
+            onClick={(e) => removeTask(e.target.id)}
+            id={number}
+          />
         </button>
       </li>
       <span className="underline"></span>

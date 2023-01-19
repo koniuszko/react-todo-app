@@ -13,12 +13,16 @@ function App() {
   const [theme, setTheme] = useState("dark");
 
   const [tasks, setTasks] = useState([
-    { id: 0, description: "Lorem ipsum dolor sit amet" },
-    { id: 1, description: "Lorem ipsum dolor sit amet" },
-    { id: 2, description: "Lorem ipsum dolor sit amet" },
-    { id: 3, description: "Lorem ipsum dolor sit amet" },
-    { id: 4, description: "Lorem ipsum dolor sit amet" },
-    { id: 5, description: "Lorem ipsum dolor sit amet" },
+    { id: 0, description: "Complete online JavaScript course", active: true },
+    { id: 1, description: "Jog around the park 3x", active: true },
+    { id: 2, description: "10 minutes meditation", active: true },
+    { id: 3, description: "Read for 1 hour", active: true },
+    { id: 4, description: "Pick up groceries", active: true },
+    {
+      id: 5,
+      description: "Complete Todo App on Frontend Mentor",
+      active: true,
+    },
   ]);
   const taskCounter = tasks.length;
 

@@ -7,7 +7,7 @@ import TaskItem from "./TaskItem";
 
 import "../style/TasksList.scss";
 
-function TasksList({ taskCounter, tasks, setTasks, removeTask }) {
+function TasksList({ taskCounter, tasks, removeTask }) {
   const clickHandler = () => {
     console.log(tasks);
   };
