@@ -19,9 +19,15 @@
   border-radius: 10px;
   overflow: hidden;
 }
-.add_item {
+
+.add_button {
   background-color: transparent;
   border: none;
+}
+.add_item {
+  @include themify($themes) {
+    color: themed("colorIcon");
+  }
   width: 100%;
   height: 100%;
 }

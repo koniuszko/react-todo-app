@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { UilPlus } from "@iconscout/react-unicons";
 
 import "../style/NewTask.scss";
 
@@ -30,10 +31,12 @@ function NewTask({ addTask }) {
   return (
     <div className="new_task">
       <div className="checkbox">
-        <button
-          className="add_item"
-          onClick={clickHandler}
-        ></button>
+        <button className="add_button">
+          <UilPlus
+            className="add_item"
+            onClick={clickHandler}
+          />
+        </button>
       </div>
       <label>
         <input

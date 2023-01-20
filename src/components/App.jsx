@@ -11,12 +11,13 @@ import Filters from "./Filters";
 
 function App() {
   const [theme, setTheme] = useState("dark");
+  const [filter, setFilter] = useState("all");
 
   const [tasks, setTasks] = useState([
     { id: 0, description: "Complete online JavaScript course", active: true },
     { id: 1, description: "Jog around the park 3x", active: true },
     { id: 2, description: "10 minutes meditation", active: true },
-    { id: 3, description: "Read for 1 hour", active: true },
+    { id: 3, description: "Read for 1 hour", active: false },
     { id: 4, description: "Pick up groceries", active: true },
     {
       id: 5,
@@ -52,8 +53,14 @@ function App() {
             tasks={tasks}
             setTasks={setTasks}
             removeTask={removeTask}
+            filter={filter}
           />
-          {useWindowWidth() < 376 ? <Filters /> : null}
+          {useWindowWidth() < 376 ? (
+            <Filters
+              filter={filter}
+              setFilter={setFilter}
+            />
+          ) : null}
           <p className="text">Drag and drop to reorder list</p>
         </div>
       </div>
