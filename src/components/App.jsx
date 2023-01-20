@@ -14,11 +14,31 @@ function App() {
   const [filter, setFilter] = useState("all");
 
   const [tasks, setTasks] = useState([
-    { id: 0, description: "Complete online JavaScript course", active: true },
-    { id: 1, description: "Jog around the park 3x", active: true },
-    { id: 2, description: "10 minutes meditation", active: true },
-    { id: 3, description: "Read for 1 hour", active: false },
-    { id: 4, description: "Pick up groceries", active: true },
+    {
+      id: 0,
+      description: "Complete online JavaScript course",
+      active: false,
+    },
+    {
+      id: 1,
+      description: "Jog around the park 3x",
+      active: true,
+    },
+    {
+      id: 2,
+      description: "10 minutes meditation",
+      active: true,
+    },
+    {
+      id: 3,
+      description: "Read for 1 hour",
+      active: true,
+    },
+    {
+      id: 4,
+      description: "Pick up groceries",
+      active: true,
+    },
     {
       id: 5,
       description: "Complete Todo App on Frontend Mentor",
@@ -38,6 +58,18 @@ function App() {
     setTasks([...tasks]);
   };
 
+  const markDone = (id) => {
+    let index = tasks.findIndex((task) => task.id == id);
+    tasks[index].active = false;
+    setTasks([...tasks]);
+  };
+
+  const markUndone = (id) => {
+    let index = tasks.findIndex((task) => task.id == id);
+    tasks[index].active = true;
+    setTasks([...tasks]);
+  };
+
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
       <div className={`theme-${theme}`}>
@@ -54,6 +86,9 @@ function App() {
             setTasks={setTasks}
             removeTask={removeTask}
             filter={filter}
+            setFilter={setFilter}
+            markDone={markDone}
+            markUndone={markUndone}
           />
           {useWindowWidth() < 376 ? (
             <Filters

@@ -14,6 +14,7 @@ function NewTask({ addTask }) {
     const newTaskItem = {
       id: (Math.random() * 100000).toFixed() * 1,
       description: taskName,
+      active: true,
     };
     addTask(newTaskItem);
     setTaskName("");

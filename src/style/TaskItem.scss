@@ -3,10 +3,18 @@
 .checkbox {
   @include themify($themes) {
     border: solid 1px themed("colorIcon");
+    color: themed("colorIcon");
   }
   width: 20px;
   height: 20px;
   border-radius: 10px;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.checkbox.gradient {
+  border: none;
+  background: linear-gradient(135deg, #55ddff, #c058f3);
 }
 .task {
   @include themify($themes) {
@@ -34,15 +42,19 @@
   letter-spacing: -0.17px;
 }
 
-.task_done {
+.task_description.grey_text {
+  @include themify($themes) {
+    color: themed("colorCompletedText");
+  }
+  text-decoration: line-through;
+}
+
+.task_icon {
   @include themify($themes) {
     color: themed("colorIcon");
   }
   background-color: transparent;
   border: none;
-  outline: none;
-  font-size: 20px;
-  align-self: center;
 }
 
 .underline {
@@ -54,4 +66,13 @@
   height: 1px;
   width: calc(100% + 40px);
   justify-self: flex-end;
+}
+
+.icon {
+  height: 20px;
+  width: 20px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
