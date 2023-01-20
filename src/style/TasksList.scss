@@ -42,8 +42,25 @@
   letter-spacing: -0.17px;
 }
 
-@media (min-width: 376px) {
+@media (min-width: 560px) {
   .list {
-    width: 400px;
+    width: 540px;
+    min-height: 62px;
+    padding: 0 24px;
+    margin-top: 24px;
+  }
+
+  .summary {
+    height: 50px;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    letter-spacing: -0.19px;
+  }
+
+  .clear_btn {
+    font-size: 14px;
+    letter-spacing: -0.19px;
   }
 }

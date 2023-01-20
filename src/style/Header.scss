@@ -10,8 +10,38 @@
   justify-content: space-between;
   margin-bottom: -92px;
 }
+.header_container {
+  width: 327px;
+  display: flex;
+  justify-content: space-between;
+}
 .logo {
   color: #fff;
   font-size: 25px;
   letter-spacing: 10px;
+}
+
+@media (min-width: 560px) {
+  .header {
+    @include themify($themes) {
+      background-image: themed("backgroundImageDesktop");
+    }
+    height: 300px;
+    width: 1440px;
+    padding: 70px 0 0;
+    flex-direction: column;
+    justify-content: initial;
+    align-items: center;
+    margin-bottom: -148px;
+  }
+
+  .header_container {
+    width: 540px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .logo {
+    font-size: 40px;
+    letter-spacing: 15px;
+  }
 }

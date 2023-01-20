@@ -27,3 +27,13 @@
 .filter_button.active {
   color: #3a7cfd;
 }
+
+@media (min-width: 560px) {
+  .filters {
+    width: 166px;
+    min-height: 0;
+    padding: 0;
+    margin-top: 0;
+    border-radius: 0;
+  }
+}

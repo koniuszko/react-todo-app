@@ -9,3 +9,9 @@
   background-size: cover;
   border: none;
 }
+@media (min-width: 560px) {
+  .switcher {
+    height: 26px;
+    width: 26px;
+  }
+}

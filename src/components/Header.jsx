@@ -5,8 +5,10 @@ import "../style/Header.scss";
 function Header() {
   return (
     <header className="header">
-      <h1 className="logo">TODO</h1>
-      <Switcher />
+      <div className="header_container">
+        <h1 className="logo">TODO</h1>
+        <Switcher />
+      </div>
     </header>
   );
 }
