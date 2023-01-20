@@ -58,6 +58,11 @@ function App() {
     setTasks([...tasks]);
   };
 
+  const clearTasks = () => {
+    const clearedTasks = tasks.filter((task) => task.active);
+    setTasks([...clearedTasks]);
+  };
+
   const markDone = (id) => {
     let index = tasks.findIndex((task) => task.id == id);
     tasks[index].active = false;
@@ -85,6 +90,7 @@ function App() {
             tasks={tasks}
             setTasks={setTasks}
             removeTask={removeTask}
+            clearTasks={clearTasks}
             filter={filter}
             setFilter={setFilter}
             markDone={markDone}

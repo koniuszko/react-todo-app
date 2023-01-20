@@ -9,15 +9,12 @@ function TasksList({
   taskCounter,
   tasks,
   removeTask,
+  clearTasks,
   markDone,
   markUndone,
   filter,
   setFilter,
 }) {
-  const clickHandler = () => {
-    console.log("ok");
-  };
-
   function showTasks() {
     const allTasks = tasks.map(({ id, description, active }) => (
       <TaskItem
@@ -80,7 +77,7 @@ function TasksList({
           />
         )}
         <button
-          onClick={() => clickHandler()}
+          onClick={() => clearTasks()}
           className="clear_btn"
         >
           Clear Completed
