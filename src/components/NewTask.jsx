@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UilPlus } from "@iconscout/react-unicons";
+import { UilPlusCircle } from "@iconscout/react-unicons";
 
 import "../style/NewTask.scss";
 
@@ -33,14 +33,13 @@ function NewTask({ addTask }) {
 
   return (
     <div className="new_task">
-      <div className="checkbox">
-        <button className="add_button">
-          <UilPlus
-            className="add_item"
-            onClick={clickHandler}
-          />
-        </button>
-      </div>
+      <button className="add_button">
+        <UilPlusCircle
+          className="add_item"
+          onClick={clickHandler}
+        />
+      </button>
+
       <label>
         <input
           className="task_field"
