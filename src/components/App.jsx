@@ -48,7 +48,7 @@ function App() {
   const taskCounter = tasks.length;
 
   const addTask = (newTaskItem) => {
-    tasks.unshift(newTaskItem);
+    tasks.push(newTaskItem);
     setTasks([...tasks]);
   };
 
