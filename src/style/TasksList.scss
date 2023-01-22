@@ -48,6 +48,7 @@
     min-height: 62px;
     padding: 0 24px;
     margin-top: 24px;
+    overflow: hidden;
   }
 
   .summary {
@@ -62,5 +63,13 @@
   .clear_btn {
     font-size: 14px;
     letter-spacing: -0.19px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .clear_btn:hover {
+    @include themify($themes) {
+      color: themed("colorFiltersHover");
+    }
   }
 }

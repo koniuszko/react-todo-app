@@ -16,6 +16,7 @@
   border: none;
   background: linear-gradient(135deg, #55ddff, #c058f3);
 }
+
 .task {
   @include themify($themes) {
     color: themed("colorCreateText");
@@ -75,4 +76,65 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+@media (min-width: 560px) {
+  .checkbox {
+    border: none;
+    position: relative;
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .checkbox.gradient {
+    border: none;
+    background: linear-gradient(135deg, #55ddff, #c058f3);
+  }
+
+  .checkbox:hover {
+    @include themify($themes) {
+      border: solid 1px themed("colorFiltersHover");
+    }
+  }
+
+  .task {
+    height: 64px;
+    cursor: pointer;
+  }
+
+  .task_description {
+    padding-left: 24px;
+    font-size: 18px;
+    letter-spacing: -0.25px;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .task_icon {
+    @include themify($themes) {
+      color: themed("colorIcon");
+    }
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .task_icon:hover {
+    @include themify($themes) {
+      color: themed("colorFiltersHover");
+    }
+  }
+
+  .underline {
+    width: calc(100% + 60px);
+  }
+
+  .icon {
+    height: 24px;
+    width: 24px;
+  }
 }

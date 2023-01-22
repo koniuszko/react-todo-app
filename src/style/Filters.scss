@@ -36,4 +36,20 @@
     margin-top: 0;
     border-radius: 0;
   }
+  .filter_button {
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .filter_button:hover {
+    @include themify($themes) {
+      color: themed("colorFiltersHover");
+    }
+  }
+  .filter_button.active {
+    cursor: initial;
+  }
+  .filter_button.active:hover {
+    color: #3a7cfd;
+  }
 }

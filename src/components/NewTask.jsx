@@ -16,8 +16,10 @@ function NewTask({ addTask }) {
       description: taskName,
       active: true,
     };
-    addTask(newTaskItem);
-    setTaskName("");
+    if (taskName.length > 0) {
+      addTask(newTaskItem);
+      setTaskName("");
+    }
   }
 
   function keyDownHandler(event) {
