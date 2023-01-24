@@ -69,7 +69,7 @@ function TasksList({
     <section className="list">
       <ul className="tasks_list">{showTasks()}</ul>
       <div className="summary">
-        <p className="task_counter">{taskCounter.toString()} items left</p>
+        <p className="task_counter">{taskCounter()} items left</p>
         {useWindowWidth() < 376 ? null : (
           <Filters
             filter={filter}

@@ -45,7 +45,10 @@ function App() {
       active: true,
     },
   ]);
-  const taskCounter = tasks.length;
+  const taskCounter = () => {
+    const counter = tasks.filter((task) => task.active);
+    return counter.length;
+  };
 
   const addTask = (newTaskItem) => {
     tasks.push(newTaskItem);
