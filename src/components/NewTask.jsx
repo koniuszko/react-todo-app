@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { UilPlusCircle } from "@iconscout/react-unicons";
+import { useTodoStore } from "../contexts/TodoContext";
 
 import "../style/NewTask.scss";
 
 function NewTask({ addTask }) {
+  const todoStore = useTodoStore();
   const [taskName, setTaskName] = useState("");
 
   function valueChange(e) {
@@ -17,7 +19,7 @@ function NewTask({ addTask }) {
       active: true,
     };
     if (taskName.length > 0) {
-      addTask(newTaskItem);
+      todoStore.addTask(newTaskItem);
       setTaskName("");
     }
   }

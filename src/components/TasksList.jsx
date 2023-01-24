@@ -1,59 +1,55 @@
 import useWindowWidth from "../hooks/useWindowWidth";
+import { useTodoStore } from "../contexts/TodoContext";
 
 import Filters from "./Filters";
 import TaskItem from "./TaskItem";
 
 import "../style/TasksList.scss";
 
-function TasksList({
-  taskCounter,
-  tasks,
-  removeTask,
-  clearTasks,
-  markDone,
-  markUndone,
-  filter,
-  setFilter,
-}) {
+function TasksList(
+  {
+    // taskCounter,
+    // tasks,
+    // removeTask,
+    // clearTasks,
+    // markDone,
+    // markUndone,
+    // filter,
+    // setFilter,
+  }
+) {
+  const todoStore = useTodoStore();
+
   function showTasks() {
-    const allTasks = tasks.map(({ id, description, active }) => (
+    const allTasks = todoStore.tasks.map(({ id, description, active }) => (
       <TaskItem
         key={Math.random()}
         number={id}
         description={description}
         active={active}
-        removeTask={removeTask}
-        markDone={markDone}
-        markUndone={markUndone}
       />
     ));
-    const activeTasks = tasks.map(({ id, description, active }) =>
+    const activeTasks = todoStore.tasks.map(({ id, description, active }) =>
       active ? (
         <TaskItem
           key={Math.random()}
           number={id}
           description={description}
           active={active}
-          removeTask={removeTask}
-          markDone={markDone}
-          markUndone={markUndone}
         />
       ) : null
     );
-    const completedTasks = tasks.map(({ id, description, active }) =>
+    const completedTasks = todoStore.tasks.map(({ id, description, active }) =>
       !active ? (
         <TaskItem
           key={Math.random()}
           number={id}
           description={description}
           active={active}
-          removeTask={removeTask}
-          markDone={markDone}
-          markUndone={markUndone}
         />
       ) : null
     );
-    switch (filter) {
+    switch (todoStore.filter) {
       case "all":
         return allTasks;
       case "active":
@@ -64,20 +60,19 @@ function TasksList({
         return allTasks;
     }
   }
-
   return (
     <section className="list">
       <ul className="tasks_list">{showTasks()}</ul>
       <div className="summary">
-        <p className="task_counter">{taskCounter()} items left</p>
+        <p className="task_counter">{todoStore.taskCounter()} items left</p>
         {useWindowWidth() < 376 ? null : (
           <Filters
-            filter={filter}
-            setFilter={setFilter}
+            filter={todoStore.filter}
+            // setFilter={setFilter}
           />
         )}
         <button
-          onClick={() => clearTasks()}
+          onClick={() => todoStore.clearTasks()}
           className="clear_btn"
         >
           Clear Completed
