@@ -8,10 +8,10 @@ import TaskItem from "./TaskItem";
 import "../style/TasksList.scss";
 
 const TasksList = observer(function TasksList() {
-  const todoStore = useTodoStore();
+  const { tasks, taskCounter, clearTasks, filter } = useTodoStore();
 
   function showTasks() {
-    const allTasks = todoStore.tasks.map(({ id, description, active }) => (
+    const allTasks = tasks.map(({ id, description, active }) => (
       <TaskItem
         key={Math.random()}
         id={id}
@@ -19,7 +19,7 @@ const TasksList = observer(function TasksList() {
         active={active}
       />
     ));
-    const activeTasks = todoStore.tasks.map(({ id, description, active }) =>
+    const activeTasks = tasks.map(({ id, description, active }) =>
       active ? (
         <TaskItem
           key={Math.random()}
@@ -29,7 +29,7 @@ const TasksList = observer(function TasksList() {
         />
       ) : null
     );
-    const completedTasks = todoStore.tasks.map(({ id, description, active }) =>
+    const completedTasks = tasks.map(({ id, description, active }) =>
       !active ? (
         <TaskItem
           key={Math.random()}
@@ -39,7 +39,7 @@ const TasksList = observer(function TasksList() {
         />
       ) : null
     );
-    switch (todoStore.filter) {
+    switch (filter) {
       case "all":
         return allTasks;
       case "active":
@@ -54,10 +54,10 @@ const TasksList = observer(function TasksList() {
     <section className="list">
       <ul className="tasks_list">{showTasks()}</ul>
       <div className="summary">
-        <p className="task_counter">{todoStore.taskCounter()} items left</p>
-        {useWindowWidth() < 376 ? null : <Filters filter={todoStore.filter} />}
+        <p className="task_counter">{taskCounter()} items left</p>
+        {useWindowWidth() < 376 ? null : <Filters filter={filter} />}
         <button
-          onClick={() => todoStore.clearTasks()}
+          onClick={() => clearTasks()}
           className="clear_btn"
         >
           Clear Completed

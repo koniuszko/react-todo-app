@@ -4,36 +4,30 @@ import { useTodoStore } from "../contexts/TodoContext";
 import "../style/Filters.scss";
 
 const Filters = observer(function Filters() {
-  const todoStore = useTodoStore();
+  const { filter, filterChange } = useTodoStore();
   return (
     <div className="filters">
       <button
         id="all"
-        onClick={(e) => todoStore.filterChange(e.target.id)}
-        className={
-          todoStore.filter == "all" ? "active filter_button" : "filter_button"
-        }
+        onClick={(e) => filterChange(e.target.id)}
+        className={filter == "all" ? "active filter_button" : "filter_button"}
       >
         All
       </button>
       <button
         id="active"
-        onClick={(e) => todoStore.filterChange(e.target.id)}
+        onClick={(e) => filterChange(e.target.id)}
         className={
-          todoStore.filter == "active"
-            ? "active filter_button"
-            : "filter_button"
+          filter == "active" ? "active filter_button" : "filter_button"
         }
       >
         Active
       </button>
       <button
         id="completed"
-        onClick={(e) => todoStore.filterChange(e.target.id)}
+        onClick={(e) => filterChange(e.target.id)}
         className={
-          todoStore.filter == "completed"
-            ? "active filter_button"
-            : "filter_button"
+          filter == "completed" ? "active filter_button" : "filter_button"
         }
       >
         Completed

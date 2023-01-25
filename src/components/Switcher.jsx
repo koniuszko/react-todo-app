@@ -3,10 +3,10 @@ import "../style/Switcher.scss";
 import { useTodoStore } from "../contexts/TodoContext";
 
 function Switcher() {
-  const todoStore = useTodoStore();
+  const { themeChange } = useTodoStore();
   return (
     <button
-      onClick={() => todoStore.themeChange()}
+      onClick={() => themeChange()}
       className="switcher"
     ></button>
   );

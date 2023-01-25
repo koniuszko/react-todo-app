@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { UilPlusCircle } from "@iconscout/react-unicons";
 import { useTodoStore } from "../contexts/TodoContext";
+import { nanoid } from "nanoid";
 
 import "../style/NewTask.scss";
 
@@ -14,7 +15,7 @@ function NewTask() {
 
   function newTask() {
     const newTaskItem = {
-      id: (Math.random() * 100000).toFixed() * 1,
+      id: nanoid(),
       description: taskName,
       active: true,
     };

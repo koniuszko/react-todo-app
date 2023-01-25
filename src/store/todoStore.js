@@ -1,35 +1,37 @@
+import { nanoid } from "nanoid";
+
 export function createTodoStore() {
   return {
     theme: "dark",
     filter: "all",
     tasks: [
       {
-        id: 0,
+        id: nanoid(),
         description: "Complete online JavaScript course",
         active: false,
       },
       {
-        id: 1,
+        id: nanoid(),
         description: "Jog around the park 3x",
         active: true,
       },
       {
-        id: 2,
+        id: nanoid(),
         description: "10 minutes meditation",
         active: true,
       },
       {
-        id: 3,
+        id: nanoid(),
         description: "Read for 1 hour",
         active: true,
       },
       {
-        id: 4,
+        id: nanoid(),
         description: "Pick up groceries",
         active: true,
       },
       {
-        id: 5,
+        id: nanoid(),
         description: "Complete Todo App on Frontend Mentor",
         active: true,
       },
@@ -51,7 +53,7 @@ export function createTodoStore() {
     },
 
     removeTask(id) {
-      let index = this.tasks.findIndex((task) => task.id == id);
+      let index = this.tasks.findIndex((task) => task.id === id);
       this.tasks.splice(index, 1);
     },
 
@@ -60,12 +62,12 @@ export function createTodoStore() {
     },
 
     markDone(id) {
-      let index = this.tasks.findIndex((task) => task.id == id);
+      let index = this.tasks.findIndex((task) => task.id === id);
       this.tasks[index].active = false;
     },
 
     markUndone(id) {
-      let index = this.tasks.findIndex((task) => task.id == id);
+      let index = this.tasks.findIndex((task) => task.id === id);
       this.tasks[index].active = true;
     },
 

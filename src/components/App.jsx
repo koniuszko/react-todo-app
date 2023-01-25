@@ -10,15 +10,15 @@ import TasksList from "./TasksList";
 import Filters from "./Filters";
 
 const App = observer(function App() {
-  const todoStore = useTodoStore();
+  const { theme, filter } = useTodoStore();
 
   return (
-    <div className={`theme-${todoStore.theme}`}>
+    <div className={`theme-${theme}`}>
       <div className="App">
         <Header />
         <NewTask />
         <TasksList />
-        {useWindowWidth() < 376 ? <Filters filter={todoStore.filter} /> : null}
+        {useWindowWidth() < 376 ? <Filters filter={filter} /> : null}
         <p className="text">Drag and drop to reorder list</p>
       </div>
     </div>
