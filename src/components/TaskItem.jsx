@@ -3,7 +3,7 @@ import { UilTimes } from "@iconscout/react-unicons";
 import { UilCheck } from "@iconscout/react-unicons";
 import { useTodoStore } from "../contexts/TodoContext";
 
-function TaskItem({ number, description, active }) {
+function TaskItem({ id, description, active }) {
   const todoStore = useTodoStore();
   return (
     <>
@@ -11,7 +11,7 @@ function TaskItem({ number, description, active }) {
         <div className="task_container">
           <button
             onClick={(e) => todoStore.markDone(e.target.id)}
-            id={number}
+            id={id}
             className={!active ? "gradient checkbox" : "checkbox"}
           >
             {!active ? (
@@ -20,7 +20,7 @@ function TaskItem({ number, description, active }) {
                   e.stopPropagation();
                   todoStore.markUndone(e.target.id);
                 }}
-                id={number}
+                id={id}
                 className="icon"
               />
             ) : null}
@@ -37,7 +37,7 @@ function TaskItem({ number, description, active }) {
         <button className="task_icon">
           <UilTimes
             onClick={(e) => todoStore.removeTask(e.target.id)}
-            id={number}
+            id={id}
           />
         </button>
       </li>

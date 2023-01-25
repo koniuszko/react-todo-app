@@ -4,7 +4,7 @@ import { useTodoStore } from "../contexts/TodoContext";
 
 import "../style/NewTask.scss";
 
-function NewTask({ addTask }) {
+function NewTask() {
   const todoStore = useTodoStore();
   const [taskName, setTaskName] = useState("");
 

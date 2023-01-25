@@ -1,30 +1,20 @@
 import useWindowWidth from "../hooks/useWindowWidth";
 import { useTodoStore } from "../contexts/TodoContext";
+import { observer } from "mobx-react-lite";
 
 import Filters from "./Filters";
 import TaskItem from "./TaskItem";
 
 import "../style/TasksList.scss";
 
-function TasksList(
-  {
-    // taskCounter,
-    // tasks,
-    // removeTask,
-    // clearTasks,
-    // markDone,
-    // markUndone,
-    // filter,
-    // setFilter,
-  }
-) {
+const TasksList = observer(function TasksList() {
   const todoStore = useTodoStore();
 
   function showTasks() {
     const allTasks = todoStore.tasks.map(({ id, description, active }) => (
       <TaskItem
         key={Math.random()}
-        number={id}
+        id={id}
         description={description}
         active={active}
       />
@@ -33,7 +23,7 @@ function TasksList(
       active ? (
         <TaskItem
           key={Math.random()}
-          number={id}
+          id={id}
           description={description}
           active={active}
         />
@@ -43,7 +33,7 @@ function TasksList(
       !active ? (
         <TaskItem
           key={Math.random()}
-          number={id}
+          id={id}
           description={description}
           active={active}
         />
@@ -65,12 +55,7 @@ function TasksList(
       <ul className="tasks_list">{showTasks()}</ul>
       <div className="summary">
         <p className="task_counter">{todoStore.taskCounter()} items left</p>
-        {useWindowWidth() < 376 ? null : (
-          <Filters
-            filter={todoStore.filter}
-            // setFilter={setFilter}
-          />
-        )}
+        {useWindowWidth() < 376 ? null : <Filters filter={todoStore.filter} />}
         <button
           onClick={() => todoStore.clearTasks()}
           className="clear_btn"
@@ -80,6 +65,6 @@ function TasksList(
       </div>
     </section>
   );
-}
+});
 
 export default TasksList;

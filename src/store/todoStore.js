@@ -33,16 +33,13 @@ export function createTodoStore() {
         description: "Complete Todo App on Frontend Mentor",
         active: true,
       },
-      {
-        id: 6,
-        description: "Complete Todo App on Frontend Mentor",
-        active: true,
-      },
     ],
     themeChange() {
       if (this.theme === "dark") {
         this.theme = "light";
-      } else console.log("nie ok");
+      } else {
+        this.theme = "dark";
+      }
     },
     taskCounter() {
       const counter = this.tasks.filter((task) => task.active);
@@ -51,12 +48,11 @@ export function createTodoStore() {
 
     addTask(newTaskItem) {
       this.tasks.push(newTaskItem);
-      console.log(this.tasks);
     },
 
     removeTask(id) {
       let index = this.tasks.findIndex((task) => task.id == id);
-      this.tasks = this.tasks.splice(index, 1);
+      this.tasks.splice(index, 1);
     },
 
     clearTasks() {
@@ -65,12 +61,28 @@ export function createTodoStore() {
 
     markDone(id) {
       let index = this.tasks.findIndex((task) => task.id == id);
-      this.tasks = this.tasks[index].active = false;
+      this.tasks[index].active = false;
     },
 
     markUndone(id) {
       let index = this.tasks.findIndex((task) => task.id == id);
-      this.tasks = this.tasks[index].active = true;
+      this.tasks[index].active = true;
+    },
+
+    filterChange(id) {
+      switch (id) {
+        case "all":
+          this.filter = "all";
+          break;
+        case "active":
+          this.filter = "active";
+          break;
+        case "completed":
+          this.filter = "completed";
+          break;
+        default:
+          this.filter = "all";
+      }
     },
   };
 }

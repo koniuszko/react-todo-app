@@ -1,38 +1,45 @@
+import { observer } from "mobx-react-lite";
+
+import { useTodoStore } from "../contexts/TodoContext";
 import "../style/Filters.scss";
 
-function Filters({ filter, setFilter }) {
+const Filters = observer(function Filters() {
+  const todoStore = useTodoStore();
   return (
     <div className="filters">
       <button
-        onClick={() => {
-          setFilter("all");
-        }}
-        className={filter == "all" ? "active filter_button" : "filter_button"}
+        id="all"
+        onClick={(e) => todoStore.filterChange(e.target.id)}
+        className={
+          todoStore.filter == "all" ? "active filter_button" : "filter_button"
+        }
       >
         All
       </button>
       <button
-        onClick={() => {
-          setFilter("active");
-        }}
+        id="active"
+        onClick={(e) => todoStore.filterChange(e.target.id)}
         className={
-          filter == "active" ? "active filter_button" : "filter_button"
+          todoStore.filter == "active"
+            ? "active filter_button"
+            : "filter_button"
         }
       >
         Active
       </button>
       <button
-        onClick={() => {
-          setFilter("completed");
-        }}
+        id="completed"
+        onClick={(e) => todoStore.filterChange(e.target.id)}
         className={
-          filter == "completed" ? "active filter_button" : "filter_button"
+          todoStore.filter == "completed"
+            ? "active filter_button"
+            : "filter_button"
         }
       >
         Completed
       </button>
     </div>
   );
-}
+});
 
 export default Filters;
