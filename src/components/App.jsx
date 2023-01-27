@@ -2,6 +2,9 @@ import useWindowWidth from "../hooks/useWindowWidth";
 import { useTodoStore } from "../contexts/TodoContext";
 import { observer } from "mobx-react-lite";
 
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+
 import "../style/App.scss";
 
 import Header from "./Header";
@@ -17,7 +20,9 @@ const App = observer(function App() {
       <div className="App">
         <Header />
         <NewTask />
-        <TasksList />
+        <DndProvider backend={HTML5Backend}>
+          <TasksList />
+        </DndProvider>
         {useWindowWidth() < 376 ? <Filters filter={filter} /> : null}
         <p className="text">Drag and drop to reorder list</p>
       </div>
