@@ -46,9 +46,11 @@
       color: themed("colorFiltersHover");
     }
   }
+
   .filter_button.active {
     cursor: initial;
   }
+
   .filter_button.active:hover {
     color: #3a7cfd;
   }

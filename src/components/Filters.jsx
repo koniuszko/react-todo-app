@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
-
 import { useTodoStore } from "../contexts/TodoContext";
+
 import "../style/Filters.scss";
 
 const Filters = observer(function Filters() {

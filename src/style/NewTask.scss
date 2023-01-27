@@ -1,4 +1,5 @@
 @import "./theme-variables.scss";
+
 .new_task {
   @include themify($themes) {
     background-color: themed("colorBoxBackground");
@@ -15,6 +16,7 @@
   background-color: transparent;
   border: none;
 }
+
 .add_item {
   @include themify($themes) {
     color: themed("colorIcon");
@@ -23,6 +25,7 @@
   height: 22px;
   transition: 0.3s;
 }
+
 .task_field {
   @include themify($themes) {
     color: themed("colorCreateText");
@@ -33,6 +36,7 @@
   outline: none;
   border: none;
 }
+
 .task_field::placeholder {
   @include themify($themes) {
     color: themed("colorCreatePlaceholderText");
@@ -57,15 +61,18 @@
     padding-left: 24px;
     font-size: 18px;
   }
+
   .task_field::placeholder {
     font-size: 18px;
     letter-spacing: -0.25px;
     line-height: 24px;
   }
+
   .add_button {
     cursor: pointer;
     transition: 0.3s;
   }
+
   .add_item {
     @include themify($themes) {
       color: themed("colorIcon");
