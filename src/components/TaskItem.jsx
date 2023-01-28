@@ -21,13 +21,15 @@ function TaskItem({ id, description, active, index }) {
         >
           <li className="task">
             <div className="task_container">
-              <button className={!active ? "gradient checkbox" : "checkbox"}>
+              <button
+                onClick={(e) => {
+                  active ? markDone(e.target.id) : markUndone(e.target.id);
+                }}
+                id={id}
+                className={!active ? "gradient checkbox" : "checkbox"}
+              >
                 <UilCheck
-                  onClick={(e) => {
-                    active ? markDone(e.target.id) : markUndone(e.target.id);
-                    console.log(e.target);
-                  }}
-                  id={id}
+                  onClick={(e) => e.stopPropagation()}
                   className={active ? "disabled icon" : "icon"}
                 />
               </button>
@@ -39,11 +41,12 @@ function TaskItem({ id, description, active, index }) {
                 {description}
               </p>
             </div>
-            <button className="task_icon">
-              <UilTimes
-                onClick={(e) => removeTask(e.target.id)}
-                id={id}
-              />
+            <button
+              onClick={(e) => removeTask(e.target.id)}
+              id={id}
+              className="task_icon"
+            >
+              <UilTimes className="icon" />
             </button>
           </li>
           <span className="underline"></span>
