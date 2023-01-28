@@ -1,11 +1,11 @@
 import React from "react";
 import { createTodoStore } from "../store/todoStore";
-import { useLocalStore } from "mobx-react-lite";
+import { useLocalObservable } from "mobx-react-lite";
 
 const TodoContext = React.createContext(null);
 
 export const TodoProvider = ({ children }) => {
-  const todoStore = useLocalStore(createTodoStore);
+  const todoStore = useLocalObservable(createTodoStore);
   return (
     <TodoContext.Provider value={todoStore}>{children}</TodoContext.Provider>
   );
