@@ -1,6 +1,12 @@
 import { useState } from "react";
 import useWindowWidth from "../hooks/useWindowWidth";
 
+import { nanoid } from "nanoid";
+
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { TouchBackend } from "react-dnd-touch-backend";
+
 import { ThemeContext } from "../contexts/theme-context";
 import "../style/App.scss";
 
@@ -15,32 +21,32 @@ function App() {
 
   const [tasks, setTasks] = useState([
     {
-      id: 0,
+      id: nanoid(),
       description: "Complete online JavaScript course",
       active: false,
     },
     {
-      id: 1,
+      id: nanoid(),
       description: "Jog around the park 3x",
       active: true,
     },
     {
-      id: 2,
+      id: nanoid(),
       description: "10 minutes meditation",
       active: true,
     },
     {
-      id: 3,
+      id: nanoid(),
       description: "Read for 1 hour",
       active: true,
     },
     {
-      id: 4,
+      id: nanoid(),
       description: "Pick up groceries",
       active: true,
     },
     {
-      id: 5,
+      id: nanoid(),
       description: "Complete Todo App on Frontend Mentor",
       active: true,
     },
@@ -85,17 +91,21 @@ function App() {
             setTasks={setTasks}
             addTask={addTask}
           />
-          <TasksList
-            taskCounter={taskCounter}
-            tasks={tasks}
-            setTasks={setTasks}
-            removeTask={removeTask}
-            clearTasks={clearTasks}
-            filter={filter}
-            setFilter={setFilter}
-            markDone={markDone}
-            markUndone={markUndone}
-          />
+          <DndProvider
+            backend={useWindowWidth() < 420 ? TouchBackend : HTML5Backend}
+          >
+            <TasksList
+              taskCounter={taskCounter}
+              tasks={tasks}
+              setTasks={setTasks}
+              removeTask={removeTask}
+              clearTasks={clearTasks}
+              filter={filter}
+              setFilter={setFilter}
+              markDone={markDone}
+              markUndone={markUndone}
+            />
+          </DndProvider>
           {useWindowWidth() < 376 ? (
             <Filters
               filter={filter}

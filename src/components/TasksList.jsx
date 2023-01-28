@@ -1,3 +1,6 @@
+import update from "immutability-helper";
+import { useCallback } from "react";
+
 import useWindowWidth from "../hooks/useWindowWidth";
 
 import Filters from "./Filters";
@@ -8,6 +11,7 @@ import "../style/TasksList.scss";
 function TasksList({
   taskCounter,
   tasks,
+  setTasks,
   removeTask,
   clearTasks,
   markDone,
@@ -16,42 +20,12 @@ function TasksList({
   setFilter,
 }) {
   function showTasks() {
-    const allTasks = tasks.map(({ id, description, active }) => (
-      <TaskItem
-        key={Math.random()}
-        number={id}
-        description={description}
-        active={active}
-        removeTask={removeTask}
-        markDone={markDone}
-        markUndone={markUndone}
-      />
-    ));
-    const activeTasks = tasks.map(({ id, description, active }) =>
-      active ? (
-        <TaskItem
-          key={Math.random()}
-          number={id}
-          description={description}
-          active={active}
-          removeTask={removeTask}
-          markDone={markDone}
-          markUndone={markUndone}
-        />
-      ) : null
+    const allTasks = tasks.map((task, i) => renderTask(task, i));
+    const activeTasks = tasks.map((task, i) =>
+      task.active ? renderTask(task, i) : null
     );
-    const completedTasks = tasks.map(({ id, description, active }) =>
-      !active ? (
-        <TaskItem
-          key={Math.random()}
-          number={id}
-          description={description}
-          active={active}
-          removeTask={removeTask}
-          markDone={markDone}
-          markUndone={markUndone}
-        />
-      ) : null
+    const completedTasks = tasks.map((task, i) =>
+      !task.active ? renderTask(task, i) : null
     );
     switch (filter) {
       case "all":
@@ -64,6 +38,33 @@ function TasksList({
         return allTasks;
     }
   }
+
+  const moveTask = useCallback((dragIndex, hoverIndex) => {
+    setTasks((prevTasks) =>
+      update(prevTasks, {
+        $splice: [
+          [dragIndex, 1],
+          [hoverIndex, 0, prevTasks[dragIndex]],
+        ],
+      })
+    );
+  }, []);
+
+  const renderTask = useCallback((task, index) => {
+    return (
+      <TaskItem
+        key={task.id}
+        index={index}
+        id={task.id}
+        active={task.active}
+        description={task.description}
+        moveTask={moveTask}
+        removeTask={removeTask}
+        markDone={markDone}
+        markUndone={markUndone}
+      />
+    );
+  }, []);
 
   return (
     <section className="list">

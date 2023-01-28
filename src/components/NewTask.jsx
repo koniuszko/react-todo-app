@@ -1,3 +1,5 @@
+import { nanoid } from "nanoid";
+
 import { useState } from "react";
 import { UilPlusCircle } from "@iconscout/react-unicons";
 
@@ -12,7 +14,7 @@ function NewTask({ addTask }) {
 
   function newTask() {
     const newTaskItem = {
-      id: (Math.random() * 100000).toFixed() * 1,
+      id: nanoid(),
       description: taskName,
       active: true,
     };
