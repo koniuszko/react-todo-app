@@ -72,7 +72,7 @@ function TaskItem({
       isDragging: monitor.isDragging(),
     }),
   });
-  const opacity = isDragging ? 0.1 : 1;
+  const opacity = isDragging ? 0 : 1;
   drag(drop(ref));
   return (
     <div
@@ -83,21 +83,14 @@ function TaskItem({
     >
       <li className="task">
         <div className="task_container">
-          <button
-            onClick={(e) => markDone(e.target.id)}
-            id={id}
-            className={!active ? "gradient checkbox" : "checkbox"}
-          >
-            {!active ? (
-              <UilCheck
-                onClick={(e) => {
-                  e.stopPropagation();
-                  markUndone(e.target.id);
-                }}
-                id={id}
-                className="icon"
-              />
-            ) : null}
+          <button className={!active ? "gradient checkbox" : "checkbox"}>
+            <UilCheck
+              className={active ? "disabled icon" : "icon"}
+              onClick={(e) => {
+                active ? markDone(e.target.id) : markUndone(e.target.id);
+              }}
+              id={id}
+            />
           </button>
 
           <p

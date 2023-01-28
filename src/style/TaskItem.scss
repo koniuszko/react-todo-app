@@ -142,7 +142,12 @@
   }
 
   .icon {
+    user-select: none;
     height: 24px;
     width: 24px;
+  }
+
+  .icon.disabled {
+    color: transparent;
   }
 }

@@ -22,36 +22,45 @@ function App() {
   const [tasks, setTasks] = useState([
     {
       id: nanoid(),
+      index: 0,
       description: "Complete online JavaScript course",
       active: false,
     },
     {
       id: nanoid(),
+      index: 1,
       description: "Jog around the park 3x",
       active: true,
     },
     {
       id: nanoid(),
+      index: 2,
       description: "10 minutes meditation",
       active: true,
     },
     {
       id: nanoid(),
+      index: 3,
       description: "Read for 1 hour",
       active: true,
     },
     {
       id: nanoid(),
+      index: 4,
       description: "Pick up groceries",
       active: true,
     },
     {
       id: nanoid(),
+      index: 5,
       description: "Complete Todo App on Frontend Mentor",
       active: true,
     },
   ]);
-  const taskCounter = tasks.length;
+  const taskCounter = () => {
+    const counter = tasks.filter((task) => task.active);
+    return counter.length;
+  };
 
   const addTask = (newTaskItem) => {
     tasks.push(newTaskItem);
@@ -59,7 +68,7 @@ function App() {
   };
 
   const removeTask = (id) => {
-    let index = tasks.findIndex((task) => task.id == id);
+    let index = tasks.findIndex((task) => task.id === id);
     tasks.splice(index, 1);
     setTasks([...tasks]);
   };
@@ -70,13 +79,13 @@ function App() {
   };
 
   const markDone = (id) => {
-    let index = tasks.findIndex((task) => task.id == id);
+    let index = tasks.findIndex((task) => task.id === id);
     tasks[index].active = false;
     setTasks([...tasks]);
   };
 
   const markUndone = (id) => {
-    let index = tasks.findIndex((task) => task.id == id);
+    let index = tasks.findIndex((task) => task.id === id);
     tasks[index].active = true;
     setTasks([...tasks]);
   };
