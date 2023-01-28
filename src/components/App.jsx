@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useWindowWidth from "../hooks/useWindowWidth";
 
+import { DragDropContext } from "react-beautiful-dnd";
 import { ThemeContext } from "../contexts/theme-context";
 import "../style/App.scss";
 
@@ -16,31 +17,37 @@ function App() {
   const [tasks, setTasks] = useState([
     {
       id: 0,
+      index: 0,
       description: "Complete online JavaScript course",
       active: false,
     },
     {
       id: 1,
+      index: 1,
       description: "Jog around the park 3x",
       active: true,
     },
     {
       id: 2,
+      index: 2,
       description: "10 minutes meditation",
       active: true,
     },
     {
       id: 3,
+      index: 3,
       description: "Read for 1 hour",
       active: true,
     },
     {
       id: 4,
+      index: 4,
       description: "Pick up groceries",
       active: true,
     },
     {
       id: 5,
+      index: 5,
       description: "Complete Todo App on Frontend Mentor",
       active: true,
     },
@@ -75,37 +82,62 @@ function App() {
     setTasks([...tasks]);
   };
 
+  const onDragEnd = (result) => {
+    const { source, destination } = result;
+    if (!destination) return;
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    )
+      return;
+    let move,
+      currentTasks = tasks;
+
+    if (source.droppableId === "TodosList") {
+      move = tasks[source.index];
+      currentTasks.splice(source.index, 1);
+    }
+
+    if (destination.droppableId === "TodosList") {
+      currentTasks.splice(destination.index, 0, move);
+    }
+
+    setTasks(currentTasks);
+  };
+
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
-      <div className={`theme-${theme}`}>
-        <div className="App">
-          <Header />
-          <NewTask
-            tasks={tasks}
-            setTasks={setTasks}
-            addTask={addTask}
-          />
-          <TasksList
-            taskCounter={taskCounter}
-            tasks={tasks}
-            setTasks={setTasks}
-            removeTask={removeTask}
-            clearTasks={clearTasks}
-            filter={filter}
-            setFilter={setFilter}
-            markDone={markDone}
-            markUndone={markUndone}
-          />
-          {useWindowWidth() < 376 ? (
-            <Filters
+    <DragDropContext onDragEnd={onDragEnd}>
+      <ThemeContext.Provider value={{ theme, setTheme }}>
+        <div className={`theme-${theme}`}>
+          <div className="App">
+            <Header />
+            <NewTask
+              tasks={tasks}
+              setTasks={setTasks}
+              addTask={addTask}
+            />
+            <TasksList
+              taskCounter={taskCounter}
+              tasks={tasks}
+              setTasks={setTasks}
+              removeTask={removeTask}
+              clearTasks={clearTasks}
               filter={filter}
               setFilter={setFilter}
+              markDone={markDone}
+              markUndone={markUndone}
             />
-          ) : null}
-          <p className="text">Drag and drop to reorder list</p>
+            {useWindowWidth() < 376 ? (
+              <Filters
+                filter={filter}
+                setFilter={setFilter}
+              />
+            ) : null}
+            <p className="text">Drag and drop to reorder list</p>
+          </div>
         </div>
-      </div>
-    </ThemeContext.Provider>
+      </ThemeContext.Provider>
+    </DragDropContext>
   );
 }
 

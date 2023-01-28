@@ -1,5 +1,7 @@
 import useWindowWidth from "../hooks/useWindowWidth";
 
+import { Droppable } from "react-beautiful-dnd";
+
 import Filters from "./Filters";
 import TaskItem from "./TaskItem";
 
@@ -16,10 +18,11 @@ function TasksList({
   setFilter,
 }) {
   function showTasks() {
-    const allTasks = tasks.map(({ id, description, active }) => (
+    const allTasks = tasks.map(({ id, description, active }, index) => (
       <TaskItem
         key={Math.random()}
         number={id}
+        index={index}
         description={description}
         active={active}
         removeTask={removeTask}
@@ -27,11 +30,12 @@ function TasksList({
         markUndone={markUndone}
       />
     ));
-    const activeTasks = tasks.map(({ id, description, active }) =>
+    const activeTasks = tasks.map(({ id, description, active }, index) =>
       active ? (
         <TaskItem
           key={Math.random()}
           number={id}
+          index={index}
           description={description}
           active={active}
           removeTask={removeTask}
@@ -40,11 +44,12 @@ function TasksList({
         />
       ) : null
     );
-    const completedTasks = tasks.map(({ id, description, active }) =>
+    const completedTasks = tasks.map(({ id, description, active }, index) =>
       !active ? (
         <TaskItem
           key={Math.random()}
           number={id}
+          index={index}
           description={description}
           active={active}
           removeTask={removeTask}
@@ -67,7 +72,19 @@ function TasksList({
 
   return (
     <section className="list">
-      <ul className="tasks_list">{showTasks()}</ul>
+      <Droppable droppableId="TodosList">
+        {(provided) => (
+          <ul
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+            className="tasks_list"
+          >
+            {showTasks()}
+            {provided.placeholder}
+          </ul>
+        )}
+      </Droppable>
+
       <div className="summary">
         <p className="task_counter">{taskCounter.toString()} items left</p>
         {useWindowWidth() < 376 ? null : (

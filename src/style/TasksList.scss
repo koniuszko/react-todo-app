@@ -6,7 +6,7 @@
   }
   width: 327px;
   min-height: 52px;
-  padding: 0 20px;
+  padding: 0;
   margin-top: 16px;
   border-radius: 5px;
   display: flex;
@@ -25,7 +25,7 @@
   @include themify($themes) {
     color: themed("colorFilters");
   }
-  padding: 20px 0;
+  padding: 20px 20px;
   display: flex;
   justify-content: space-between;
   font-size: 12px;
@@ -46,14 +46,14 @@
   .list {
     width: 540px;
     min-height: 62px;
-    padding: 0 24px;
+    padding: 0;
     margin-top: 24px;
     overflow: hidden;
   }
 
   .summary {
     height: 50px;
-    padding: 20px 0;
+    padding: 20px 24px;
     display: flex;
     justify-content: space-between;
     font-size: 14px;
