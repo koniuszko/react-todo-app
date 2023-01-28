@@ -10,7 +10,7 @@ import { ItemTypes } from "../store/ItemTypes";
 function TaskItem({ id, description, active, index, moveCard }) {
   const ref = useRef(null);
   const [{ handlerId }, drop] = useDrop({
-    accept: ItemTypes.CARD,
+    accept: ItemTypes.TASK,
     collect(monitor) {
       return {
         handlerId: monitor.getHandlerId(),
@@ -56,7 +56,7 @@ function TaskItem({ id, description, active, index, moveCard }) {
     },
   });
   const [{ isDragging }, drag] = useDrag({
-    type: ItemTypes.CARD,
+    type: ItemTypes.TASK,
     item: () => {
       return { id, index };
     },

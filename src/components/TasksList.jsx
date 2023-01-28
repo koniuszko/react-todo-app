@@ -44,6 +44,7 @@ const TasksList = observer(function TasksList() {
       active: true,
     },
   ]);
+
   const moveCard = useCallback((dragIndex, hoverIndex) => {
     setCards((prevCards) =>
       update(prevCards, {
