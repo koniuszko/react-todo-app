@@ -1,17 +1,14 @@
 import "../style/Switcher.scss";
 
-import { ThemeContext } from "../contexts/theme-context";
+import { useTodoStore } from "../contexts/TodoContext";
 
 function Switcher() {
+  const { themeChange } = useTodoStore();
   return (
-    <ThemeContext.Consumer>
-      {({ theme, setTheme }) => (
-        <button
-          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-          className="switcher"
-        ></button>
-      )}
-    </ThemeContext.Consumer>
+    <button
+      onClick={() => themeChange()}
+      className="switcher"
+    ></button>
   );
 }
 

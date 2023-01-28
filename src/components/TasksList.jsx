@@ -1,4 +1,6 @@
 import useWindowWidth from "../hooks/useWindowWidth";
+import { useTodoStore } from "../contexts/TodoContext";
+import { observer } from "mobx-react-lite";
 
 import { Droppable } from "react-beautiful-dnd";
 
@@ -7,54 +9,38 @@ import TaskItem from "./TaskItem";
 
 import "../style/TasksList.scss";
 
-function TasksList({
-  taskCounter,
-  tasks,
-  removeTask,
-  clearTasks,
-  markDone,
-  markUndone,
-  filter,
-  setFilter,
-}) {
+const TasksList = observer(function TasksList() {
+  const { tasks, taskCounter, clearTasks, filter } = useTodoStore();
+
   function showTasks() {
     const allTasks = tasks.map(({ id, description, active }, index) => (
       <TaskItem
-        key={Math.random()}
-        number={id}
+        key={id}
+        id={id}
         index={index}
         description={description}
         active={active}
-        removeTask={removeTask}
-        markDone={markDone}
-        markUndone={markUndone}
       />
     ));
     const activeTasks = tasks.map(({ id, description, active }, index) =>
       active ? (
         <TaskItem
-          key={Math.random()}
-          number={id}
+          key={id}
+          id={id}
           index={index}
           description={description}
           active={active}
-          removeTask={removeTask}
-          markDone={markDone}
-          markUndone={markUndone}
         />
       ) : null
     );
     const completedTasks = tasks.map(({ id, description, active }, index) =>
       !active ? (
         <TaskItem
-          key={Math.random()}
-          number={id}
+          key={id}
+          id={id}
           index={index}
           description={description}
           active={active}
-          removeTask={removeTask}
-          markDone={markDone}
-          markUndone={markUndone}
         />
       ) : null
     );
@@ -69,7 +55,6 @@ function TasksList({
         return allTasks;
     }
   }
-
   return (
     <section className="list">
       <Droppable droppableId="TodosList">
@@ -86,13 +71,8 @@ function TasksList({
       </Droppable>
 
       <div className="summary">
-        <p className="task_counter">{taskCounter.toString()} items left</p>
-        {useWindowWidth() < 376 ? null : (
-          <Filters
-            filter={filter}
-            setFilter={setFilter}
-          />
-        )}
+        <p className="task_counter">{taskCounter()} items left</p>
+        {useWindowWidth() < 376 ? null : <Filters filter={filter} />}
         <button
           onClick={() => clearTasks()}
           className="clear_btn"
@@ -102,6 +82,6 @@ function TasksList({
       </div>
     </section>
   );
-}
+});
 
 export default TasksList;

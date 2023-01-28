@@ -1,21 +1,15 @@
 import "../style/TaskItem.scss";
 import { UilTimes } from "@iconscout/react-unicons";
 import { UilCheck } from "@iconscout/react-unicons";
+import { useTodoStore } from "../contexts/TodoContext";
 
 import { Draggable } from "react-beautiful-dnd";
 
-function TaskItem({
-  number,
-  index,
-  description,
-  active,
-  removeTask,
-  markDone,
-  markUndone,
-}) {
+function TaskItem({ id, description, active, index }) {
+  const { markDone, markUndone, removeTask } = useTodoStore();
   return (
     <Draggable
-      draggableId={number.toString()}
+      draggableId={id}
       index={index}
     >
       {(provided, snapshot) => (
@@ -27,23 +21,16 @@ function TaskItem({
         >
           <li className="task">
             <div className="task_container">
-              <button
-                onClick={(e) => markDone(e.target.id)}
-                id={number}
-                className={!active ? "gradient checkbox" : "checkbox"}
-              >
-                {!active ? (
-                  <UilCheck
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      markUndone(e.target.id);
-                    }}
-                    id={number}
-                    className="icon"
-                  />
-                ) : null}
+              <button className={!active ? "gradient checkbox" : "checkbox"}>
+                <UilCheck
+                  onClick={(e) => {
+                    active ? markDone(e.target.id) : markUndone(e.target.id);
+                    console.log(e.target);
+                  }}
+                  id={id}
+                  className={active ? "disabled icon" : "icon"}
+                />
               </button>
-
               <p
                 className={
                   !active ? "grey_text task_description" : "task_description"
@@ -55,7 +42,7 @@ function TaskItem({
             <button className="task_icon">
               <UilTimes
                 onClick={(e) => removeTask(e.target.id)}
-                id={number}
+                id={id}
               />
             </button>
           </li>

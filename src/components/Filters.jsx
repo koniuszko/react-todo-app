@@ -1,20 +1,22 @@
+import { observer } from "mobx-react-lite";
+import { useTodoStore } from "../contexts/TodoContext";
+
 import "../style/Filters.scss";
 
-function Filters({ filter, setFilter }) {
+const Filters = observer(function Filters() {
+  const { filter, filterChange } = useTodoStore();
   return (
     <div className="filters">
       <button
-        onClick={() => {
-          setFilter("all");
-        }}
+        id="all"
+        onClick={(e) => filterChange(e.target.id)}
         className={filter == "all" ? "active filter_button" : "filter_button"}
       >
         All
       </button>
       <button
-        onClick={() => {
-          setFilter("active");
-        }}
+        id="active"
+        onClick={(e) => filterChange(e.target.id)}
         className={
           filter == "active" ? "active filter_button" : "filter_button"
         }
@@ -22,9 +24,8 @@ function Filters({ filter, setFilter }) {
         Active
       </button>
       <button
-        onClick={() => {
-          setFilter("completed");
-        }}
+        id="completed"
+        onClick={(e) => filterChange(e.target.id)}
         className={
           filter == "completed" ? "active filter_button" : "filter_button"
         }
@@ -33,6 +34,6 @@ function Filters({ filter, setFilter }) {
       </button>
     </div>
   );
-}
+});
 
 export default Filters;

@@ -1,6 +1,7 @@
 @import "./theme-variables.scss";
 .list_item {
   width: 100%;
+  cursor: move;
 }
 
 .checkbox {
@@ -70,7 +71,6 @@
   content: "";
   height: 1px;
   width: 327px;
-  // margin-left: -20px;
   justify-self: flex-end;
 }
 
@@ -78,13 +78,19 @@
   height: 20px;
   width: 20px;
   position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  user-select: none;
 }
+
+.disabled.icon {
+  color: transparent;
+}
+
 .drag {
   box-shadow: 0 0 20px black;
 }
+
 @media (min-width: 560px) {
   .checkbox {
     border: none;
@@ -139,7 +145,6 @@
 
   .underline {
     width: 540px;
-    // margin-left: -24px;
   }
 
   .icon {
