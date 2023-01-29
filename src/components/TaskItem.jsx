@@ -7,6 +7,7 @@ import { Draggable } from "react-beautiful-dnd";
 
 function TaskItem({ id, description, active, index }) {
   const { markDone, markUndone, removeTask } = useTodoStore();
+
   return (
     <Draggable
       draggableId={id}

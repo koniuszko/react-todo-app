@@ -86,6 +86,7 @@ export function createTodoStore() {
           this.filter = "all";
       }
     },
+
     updateTasks(currentTasks) {
       this.tasks = currentTasks;
     },

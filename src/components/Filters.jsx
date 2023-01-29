@@ -5,6 +5,7 @@ import "../style/Filters.scss";
 
 const Filters = observer(function Filters() {
   const { filter, filterChange } = useTodoStore();
+
   return (
     <div className="filters">
       <button

@@ -12,6 +12,7 @@ import Filters from "./Filters";
 
 const App = observer(function App() {
   const { theme, filter, tasks, updateTasks } = useTodoStore();
+
   const onDragEnd = (result) => {
     const { source, destination } = result;
     if (!destination) return;
@@ -42,7 +43,7 @@ const App = observer(function App() {
           <Header />
           <NewTask />
           <TasksList />
-          {useWindowWidth() < 376 ? <Filters filter={filter} /> : null}
+          {useWindowWidth() < 420 ? <Filters filter={filter} /> : null}
           <p className="text">Drag and drop to reorder list</p>
         </div>
       </div>

@@ -22,6 +22,7 @@ const TasksList = observer(function TasksList() {
         active={active}
       />
     ));
+
     const activeTasks = tasks.map(({ id, description, active }, index) =>
       active ? (
         <TaskItem
@@ -33,6 +34,7 @@ const TasksList = observer(function TasksList() {
         />
       ) : null
     );
+
     const completedTasks = tasks.map(({ id, description, active }, index) =>
       !active ? (
         <TaskItem
@@ -44,6 +46,7 @@ const TasksList = observer(function TasksList() {
         />
       ) : null
     );
+
     switch (filter) {
       case "all":
         return allTasks;
@@ -55,6 +58,7 @@ const TasksList = observer(function TasksList() {
         return allTasks;
     }
   }
+
   return (
     <section className="list">
       <Droppable droppableId="TodosList">
@@ -72,7 +76,7 @@ const TasksList = observer(function TasksList() {
 
       <div className="summary">
         <p className="task_counter">{taskCounter()} items left</p>
-        {useWindowWidth() < 376 ? null : <Filters filter={filter} />}
+        {useWindowWidth() < 420 ? null : <Filters filter={filter} />}
         <button
           onClick={() => clearTasks()}
           className="clear_btn"

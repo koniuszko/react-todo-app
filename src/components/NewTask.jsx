@@ -7,6 +7,7 @@ import "../style/NewTask.scss";
 
 function NewTask() {
   const todoStore = useTodoStore();
+
   const [taskName, setTaskName] = useState("");
 
   function valueChange(e) {

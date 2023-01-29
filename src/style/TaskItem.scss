@@ -17,8 +17,10 @@
 }
 
 .checkbox.gradient {
-  border: none;
+  border: solid 1px transparent;
   background: linear-gradient(135deg, #55ddff, #c058f3);
+  background-size: 120% 120%;
+  background-position: -1px -1px;
 }
 
 .task {
@@ -78,8 +80,8 @@
   height: 20px;
   width: 20px;
   position: relative;
-  top: 0;
-  left: 0;
+  top: -1px;
+  left: -1px;
   user-select: none;
   pointer-events: none;
 }
@@ -106,7 +108,8 @@
   .checkbox.gradient {
     border: solid 1px transparent;
     background: linear-gradient(135deg, #55ddff, #c058f3);
-    background-size: 110% 110%;
+    background-size: 120% 120%;
+    background-position: -2px -2px;
   }
 
   .checkbox:hover {
