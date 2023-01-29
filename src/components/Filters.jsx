@@ -11,7 +11,7 @@ const Filters = observer(function Filters() {
       <button
         id="all"
         onClick={(e) => filterChange(e.target.id)}
-        className={filter == "all" ? "active filter_button" : "filter_button"}
+        className={filter === "all" ? "active filter_button" : "filter_button"}
       >
         All
       </button>
@@ -19,7 +19,7 @@ const Filters = observer(function Filters() {
         id="active"
         onClick={(e) => filterChange(e.target.id)}
         className={
-          filter == "active" ? "active filter_button" : "filter_button"
+          filter === "active" ? "active filter_button" : "filter_button"
         }
       >
         Active
@@ -28,7 +28,7 @@ const Filters = observer(function Filters() {
         id="completed"
         onClick={(e) => filterChange(e.target.id)}
         className={
-          filter == "completed" ? "active filter_button" : "filter_button"
+          filter === "completed" ? "active filter_button" : "filter_button"
         }
       >
         Completed
